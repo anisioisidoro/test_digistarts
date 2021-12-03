@@ -42,11 +42,11 @@ class _HomePageState extends State<HomePage> {
         );
       }
       return Padding(
-        padding: EdgeInsets.symmetric(horizontal: verifyScreenSize(context)?50:15, vertical: verifyScreenSize(context)?10:0),
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
         child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: verifyScreenSize(context) ? 4 : 1,
+                childAspectRatio: 1,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5),
             itemCount: _covidStore.states.length,

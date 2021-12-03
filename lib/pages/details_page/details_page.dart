@@ -25,66 +25,74 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Observer(builder: (_) {
-      if (_covidStore.isloadingCase) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      if (_covidStore.cases.length < 0) {
-        return Center(
-          child: Text("There is content to be shown"),
-        );
-      }
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.grey[300],
+          title: Text(widget.state),
+        ),
+        body: Observer(builder: (_) {
+          if (_covidStore.isloadingCase) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (_covidStore.cases.length < 0) {
+            return Center(
+              child: Text("There is content to be shown"),
+            );
+          }
 
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: verifyScreenSize(context)?50:0, vertical: verifyScreenSize(context)?10:0),
-        child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                 childAspectRatio: verifyScreenSize(context) ? 2 : 0.5,
-                mainAxisSpacing: 5,
-                crossAxisSpacing: 5),
-            itemCount: _covidStore.cases.length,
-            itemBuilder: (context, index) {
-              var cases = _covidStore.cases[index];
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.9,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5),
+                itemCount: _covidStore.cases.length,
+                itemBuilder: (context, index) {
+                  var cases = _covidStore.cases[index];
 
-              return Card(
-                  color: Colors.grey[300],
-                  elevation: 8.0,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                    height: 200,
-                    width: 350,
-                    child: Column(
-                      children: [
-                        
-                        Padding(
-                          padding: EdgeInsets.only(top: 2),
-                          child: Text(
-                            "Death: ${cases.deaths}",
-                            style: regular16pt.copyWith(color: Colors.red),
-                          ),
+                  return Card(
+                      color: Colors.grey[300],
+                      elevation: 8.0,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                        height: 200,
+                        width: 350,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 2),
+                              child: Text(
+                                "Death: ${cases.deaths}",
+                                style: regular16pt.copyWith(color: Colors.red),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2),
+                              child: Text(
+                                "Confirmed: ${cases.confirmed}",
+                                style:
+                                    regular16pt.copyWith(color: Colors.orange),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2),
+                              child: Text(
+                                "Date: ${cases.date.toString().substring(0, 11)}",
+                                style: TextStyle(color: Colors.black54),
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 2),
-                          child: Text(
-                            "Confirmed: ${cases.confirmed}",
-                            style: regular16pt.copyWith(color: Colors.orange),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 2),
-                          child: Text(
-                            "Date: ${cases.date}",
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ));
-            }),
-      );
-    }));
+                      ));
+                }),
+          );
+        }));
   }
 }
