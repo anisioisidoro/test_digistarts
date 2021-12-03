@@ -1,4 +1,4 @@
-class CovidException implements Exception{
+class CovidException implements Exception {
   final String message;
 
   CovidException(this.message);

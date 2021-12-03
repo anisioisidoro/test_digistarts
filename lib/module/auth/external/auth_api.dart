@@ -1,27 +1,21 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:http_interceptor/http/http.dart';
+import 'package:dio/dio.dart';
 import 'package:test_digistarts/module/auth/domain/entities/logged_user.dart';
 import 'package:test_digistarts/module/auth/domain/usecases/login_usecase.dart';
 import 'package:test_digistarts/module/auth/infra/datasources/auth_datasource.dart';
 
 class AuthApi implements IAuthDatasource {
+  Dio dio;
 
-  InterceptedHttp http;
-
-  AuthApi(this.http);
+  AuthApi(this.dio);
 
   @override
-  Future<LoggedUserModel> login({ LoginParams? params}) async {
+  Future<LoggedUserModel> login({LoginParams? params}) async {
+    var response = await dio.post(
+      "https://universitybackend.herokuapp.com/estudante/login",
+      data: {"codigo": params?.codigo, "password": params?.password},
+    );
 
-      var response = await http.post(Uri.parse("https://universitybackend.herokuapp.com/estudante/login"),
-          body: json.encode({"codigo": params?.codigo, "password": params?.password}),
-           );
-
-      return LoggedUserModel.fromJson(json.decode(response.body));
+    return LoggedUserModel.fromJson(response.data);
   }
-
- 
-
-
 }

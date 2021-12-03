@@ -1,18 +1,18 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:http_interceptor/http_interceptor.dart';
 
-class GlobalInterceptor implements InterceptorContract {
+class GlobalInterceptor extends InterceptorsWrapper {
   @override
-  Future<RequestData> interceptRequest({required RequestData data}) async {
-    data.headers[HttpHeaders.authorizationHeader] =
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    options.headers['Authorization'] =
         "Token 8b34c604f8c467c5950550f6870bde20dc5229fb";
-    data.headers[HttpHeaders.contentTypeHeader] = "application/json";
-
-    return data;
+    options.headers['ContentTypeHeader'] = "application/json";
+    super.onRequest(options, handler);
   }
 
   @override
-  Future<ResponseData> interceptResponse({required ResponseData data}) async {
-    return data;
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    super.onResponse(response, handler);
   }
 }

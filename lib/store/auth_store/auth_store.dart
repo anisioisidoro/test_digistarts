@@ -72,10 +72,8 @@ abstract class _AuthStoreBase with Store {
           (Route<dynamic> route) => false);
     } else {
       value.fold((l) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(
-              backgroundColor: Colors.red,
-              content: Text(l.message)));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(backgroundColor: Colors.red, content: Text(l.message)));
       }, (r) => null);
     }
   }

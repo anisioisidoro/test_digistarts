@@ -4,7 +4,6 @@ import 'package:test_digistarts/module/covid/domain/errors/errors.dart';
 import 'package:test_digistarts/module/covid/domain/interfaces/covid_interface.dart';
 import 'package:test_digistarts/module/covid/infra/datasources/covid_datasource.dart';
 
-
 class CovidRepository implements ICovidRepository {
   final ICovidDatasource? covidDatasource;
 

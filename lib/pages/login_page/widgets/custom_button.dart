@@ -6,7 +6,12 @@ class CustomPrimaryButton extends StatelessWidget {
   final String textValue;
   final Color textColor;
 
-   CustomPrimaryButton({Key? key,  required this.buttonColor, required this.textValue, required this.textColor}) : super(key: key);
+  CustomPrimaryButton(
+      {Key? key,
+      required this.buttonColor,
+      required this.textValue,
+      required this.textColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +28,9 @@ class CustomPrimaryButton extends StatelessWidget {
           color: Colors.transparent,
           child: Center(
             child: Text(
-                  textValue,
-                  style: heading5.copyWith(color: textColor),
-                ),
+              textValue,
+              style: heading5.copyWith(color: textColor),
+            ),
           ),
         ),
       ),

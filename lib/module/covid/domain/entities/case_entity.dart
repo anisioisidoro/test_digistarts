@@ -1,4 +1,3 @@
-
 class CaseEntity {
   CaseEntity({
     required this.count,

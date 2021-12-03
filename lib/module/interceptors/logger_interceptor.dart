@@ -1,19 +1,14 @@
-import 'dart:io';
-import 'package:http_interceptor/http/http.dart';
-import 'package:http_interceptor/models/response_data.dart';
-import 'package:http_interceptor/models/request_data.dart';
+import 'package:dio/dio.dart';
 
-
-class LoggerInterceptor implements InterceptorContract {
+class LoggerInterceptor extends InterceptorsWrapper {
   @override
-  Future<RequestData> interceptRequest({required RequestData data}) async {
-    data.headers[HttpHeaders.contentTypeHeader] = "application/json";
-    return data;
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    options.headers['ContentTypeHeader'] = "application/json";
+    super.onRequest(options, handler);
   }
 
   @override
-  Future<ResponseData> interceptResponse({required ResponseData data}) async {
-
-    return data;
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    super.onResponse(response, handler);
   }
 }

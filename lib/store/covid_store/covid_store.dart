@@ -69,7 +69,7 @@ abstract class _CovidStoreBase with Store {
           ?.where((element) => element.state == state)
           .toList();
 
-          cases.addAll(result as List<Result>);
+      cases.addAll(result as List<Result>);
     } catch (e) {
       debugPrint(e.toString());
     } finally {
