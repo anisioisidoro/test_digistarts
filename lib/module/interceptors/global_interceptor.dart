@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:http_interceptor/http_interceptor.dart';
 
 class GlobalInterceptor extends InterceptorsWrapper {
   @override

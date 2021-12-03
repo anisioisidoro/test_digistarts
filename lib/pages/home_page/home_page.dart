@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:test_digistarts/module/service/service_locator.dart';
 import 'package:test_digistarts/pages/details_page/details_page.dart';
 import 'package:test_digistarts/store/covid_store/covid_store.dart';
-import 'package:test_digistarts/utils/global_const.dart';
 import 'package:test_digistarts/utils/theme.dart';
 
 class HomePage extends StatefulWidget {
